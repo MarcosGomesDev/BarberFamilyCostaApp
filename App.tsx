@@ -5,8 +5,8 @@
  * @format
  */
 
-import React from 'react';
 import type {PropsWithChildren} from 'react';
+import React, {useEffect} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -16,7 +16,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-
+import BootSplash from 'react-native-bootsplash';
 import {
   Colors,
   DebugInstructions,
@@ -61,6 +61,12 @@ function App(): React.JSX.Element {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      BootSplash.hide({fade: true});
+    }, 1300);
+  }, []);
 
   return (
     <SafeAreaView style={backgroundStyle}>
