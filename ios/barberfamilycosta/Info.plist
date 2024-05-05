@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>barberfamilycosta</string>
+	<string>BFC</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -49,20 +49,16 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>NunitoSans-Black.ttf</string>
-		<string>NunitoSans-BlackItalic.ttf</string>
-		<string>NunitoSans-Bold.ttf</string>
-		<string>NunitoSans-BoldItalic.ttf</string>
-		<string>NunitoSans-ExtraBold.ttf</string>
-		<string>NunitoSans-ExtraBoldItalic.ttf</string>
-		<string>NunitoSans-ExtraLight.ttf</string>
-		<string>NunitoSans-ExtraLightItalic.ttf</string>
-		<string>NunitoSans-Italic.ttf</string>
-		<string>NunitoSans-Light.ttf</string>
-		<string>NunitoSans-LightItalic.ttf</string>
-		<string>NunitoSans-Regular.ttf</string>
-		<string>NunitoSans-SemiBold.ttf</string>
-		<string>NunitoSans-SemiBoldItalic.ttf</string>
+		<string>Nunito-Black.otf</string>
+		<string>Nunito-BlackItalic.otf</string>
+		<string>Nunito-Bold.otf</string>
+		<string>Nunito-BoldItalic.otf</string>
+		<string>Nunito-Italic.otf</string>
+		<string>Nunito-Light.otf</string>
+		<string>Nunito-LightItalic.otf</string>
+		<string>Nunito-Regular.otf</string>
+		<string>Nunito-Medium.otf</string>
+		<string>Nunito-MediumItalic.otf</string>
 	</array>
 </dict>
 </plist>
