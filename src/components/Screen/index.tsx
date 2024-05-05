@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Appearance,
   KeyboardAvoidingView,
   Platform,
   ScrollViewProps,
@@ -44,8 +43,6 @@ export function Screen({
 
   const [scrolled, setScrolled] = React.useState(false);
 
-  const colorSchema = Appearance.getColorScheme();
-
   const Container = scrollable ? ScrollViewContainer : ViewContainer;
 
   function handleScroll(event: any) {
@@ -62,11 +59,7 @@ export function Screen({
   return (
     <>
       <StatusBar
-        barStyle={
-          statusBarTranslucent || colorSchema === 'dark'
-            ? 'light-content'
-            : 'dark-content'
-        }
+        barStyle={'light-content'}
         animated
         showHideTransition={'fade'}
         backgroundColor={
@@ -82,7 +75,7 @@ export function Screen({
       {Platform.OS === 'ios' && (
         <Box
           backgroundColor="background"
-          padding={statusBarTranslucent ? (scrolled ? 's24' : 'none') : 's24'}
+          padding={statusBarTranslucent ? (scrolled ? 's24' : 'none') : 's8'}
         />
       )}
 
