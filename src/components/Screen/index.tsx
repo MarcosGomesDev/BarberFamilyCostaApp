@@ -78,6 +78,14 @@ export function Screen({
         }
         translucent={statusBarTranslucent}
       />
+
+      {Platform.OS === 'ios' && (
+        <Box
+          backgroundColor="background"
+          padding={statusBarTranslucent ? (scrolled ? 's24' : 'none') : 's24'}
+        />
+      )}
+
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
