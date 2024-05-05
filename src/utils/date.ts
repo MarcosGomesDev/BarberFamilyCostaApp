@@ -1,6 +1,28 @@
+import { BarberShopInfoCard } from '@components';
 import { format, toZonedTime } from 'date-fns-tz';
 import { ptBR } from 'date-fns/locale/pt-BR';
 import { capitalizeFirstLetter } from './capitalize';
+
+const weekDaysOrder: string[] = [
+  'segunda',
+  'terça',
+  'quarta',
+  'quinta',
+  'sexta',
+  'sábado',
+  'domingo',
+];
+
+export function sortDaysOfWeek(
+  weekDays: BarberShopInfoCard['schedule'],
+): BarberShopInfoCard['schedule'] {
+  return weekDays.sort((a, b) => {
+    return (
+      weekDaysOrder.indexOf(a.dayName.toLowerCase()) -
+      weekDaysOrder.indexOf(b.dayName.toLowerCase())
+    );
+  });
+}
 
 export function getCurrentDayName(): string {
   const currentDate = new Date();
