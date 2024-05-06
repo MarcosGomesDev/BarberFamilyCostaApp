@@ -1,5 +1,5 @@
 import { Box, Button, Icon, Text } from '@components';
-// import { useToastService } from '@services';
+import { useToastService } from '@services';
 import { copyToClipboard, maskPhone } from '@utils';
 import React from 'react';
 
@@ -8,15 +8,15 @@ interface ContactProps {
 }
 
 export function Contact({ phones }: ContactProps) {
-  // const { showToast } = useToastService();
+  const { showToast } = useToastService();
 
   function handleCopyToClipboard(text: string) {
     copyToClipboard(text);
-    // showToast({
-    //   message: 'Número copiado para a área de transferência.',
-    //   type: 'success',
-    //   duration: 2000,
-    // });
+    showToast({
+      message: 'Número copiado para a área de transferência.',
+      type: 'success',
+      duration: 2000,
+    });
   }
 
   return (
