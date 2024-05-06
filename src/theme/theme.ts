@@ -6,6 +6,7 @@ export const palette = {
   primaryPurple: '#8162FF',
   backgroundBlack: '#141518',
   secondaryBlack: '#1A1B1F',
+  greenSuccess: '#4ABC86',
   gray1: '#26272B',
   gray2: '#4E525B',
   gray3: '#838896',
