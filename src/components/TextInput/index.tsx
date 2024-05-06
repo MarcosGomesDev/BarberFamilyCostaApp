@@ -32,7 +32,7 @@ export function TextInput({
     flexDirection: 'row',
     borderWidth: 1,
     borderColor: errorMessage ? 'red' : 'gray3',
-    padding: 's8',
+    padding: 's12',
     borderRadius: 's8',
     backgroundColor: 'secondaryBlack',
   };
