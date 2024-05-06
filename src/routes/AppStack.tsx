@@ -12,9 +12,7 @@ interface Props {
   initialRouteName?: keyof AppStackParamList;
 }
 
-export function AppStack({
-  initialRouteName = 'BarbershopDetailsScreen',
-}: Props) {
+export function AppStack({ initialRouteName = 'HomeScreen' }: Props) {
   return (
     <Stack.Navigator
       screenOptions={{
