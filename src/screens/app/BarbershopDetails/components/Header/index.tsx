@@ -1,4 +1,5 @@
 import { Box, Button } from '@components';
+import { useNavigation } from '@react-navigation/native';
 import { Dimensions, Image } from 'react-native';
 
 interface HeaderDetailsProps {
@@ -6,6 +7,8 @@ interface HeaderDetailsProps {
 }
 
 export function HeaderDetails({ image }: HeaderDetailsProps) {
+  const navigation = useNavigation();
+
   return (
     <Box position="relative">
       <Box
@@ -22,6 +25,7 @@ export function HeaderDetails({ image }: HeaderDetailsProps) {
           icon
           iconName="arrowLeft"
           title=""
+          onPress={() => navigation.goBack()}
           preset="default"
           height={40}
           width={45}
