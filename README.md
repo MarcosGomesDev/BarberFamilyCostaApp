@@ -62,7 +62,7 @@ yarn test
 
 |                        |                       Android                        | IOS                                      |
 | :--------------------: | :--------------------------------------------------: | ---------------------------------------- |
-|     Splash Screen      |     ![](docs/images/android/splash_android.png)      | ![](docs/images/ios/splash_ios.png)      |
-|      Home Screen       |      ![](docs/images/android/home_android.png)       | ![](docs/images/ios/home_ios.png)        |
-|   Barbershop Screen    |   ![](docs/images/android/barbershop_android.png)    | ![](docs/images/ios/barbershop.png)      |
-| Barbershop Info Screen | ![](docs/images/android/barbershop_info_android.png) | ![](docs/images/ios/barbershop-info.png) |
+|     Splash Screen      |     <img src="docs/images/android/splash_android.png" width="150"/>      | <img src="docs/images/ios/splash_ios.png" width="150"/>     |
+|      Home Screen       |     <img src="docs/images/android/home_android.png" width="150"/>       | <img src="docs/images/ios/home_ios.png" width="150"/>        |
+|   Barbershop Screen    |   <img src="docs/images/android/barbershop_android.png" width="150"/>    | <img src="docs/images/ios/barbershop.png" width="150"/>      |
+| Barbershop Info Screen | <img src="docs/images/android/barbershop_info_android.png" width="150"/> | <img src="docs/images/ios/barbershop-info.png" width="150"/>  |
