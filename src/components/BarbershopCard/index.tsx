@@ -9,11 +9,12 @@ import { Text } from '../Text';
 interface BarberShopCardProps {
   data: BarberShop;
   style?: ViewStyle;
+  onPress?: () => void;
 }
 
 const widthCard = Dimensions.get('window').width / 2.1;
 
-export function BarberShopCard({ data, style }: BarberShopCardProps) {
+export function BarberShopCard({ data, style, onPress }: BarberShopCardProps) {
   return (
     <Box
       backgroundColor="secondaryBlack"
@@ -67,6 +68,7 @@ export function BarberShopCard({ data, style }: BarberShopCardProps) {
       <Button
         preset="default"
         title="Reservar"
+        onPress={onPress}
         style={{ height: 45, marginHorizontal: 8 }}
       />
     </Box>
