@@ -84,7 +84,11 @@ export function Screen({
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         {hasHeader && (
           <Box
-            style={{ backgroundColor: colors.background, paddingTop: top }}
+            style={{
+              backgroundColor: colors.background,
+              paddingTop: top,
+              paddingBottom: bottom,
+            }}
             alignContent="center">
             <ScreenHeader
               HeaderComponent={HeaderComponent}

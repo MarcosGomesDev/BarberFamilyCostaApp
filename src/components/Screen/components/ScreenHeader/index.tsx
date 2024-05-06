@@ -51,7 +51,7 @@ export function ScreenHeader({
           flexDirection="row"
           alignItems="center"
           mr="s10"
-          onPress={() => {}}>
+          onPress={navigation.goBack}>
           <Icon size={24} name="menu" color="white" />
         </TouchableOpacityBox>
       )}
