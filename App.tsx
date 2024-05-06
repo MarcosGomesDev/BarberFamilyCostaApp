@@ -1,23 +1,32 @@
+import { Toast } from '@components';
 import { Router } from '@routes';
+import {
+  AuthCredentialsProvider,
+  initializeStorage,
+  MMKVStorage,
+} from '@services';
 import { ThemeProvider } from '@shopify/restyle';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { theme } from '@theme';
-import React, { useEffect } from 'react';
-import BootSplash from 'react-native-bootsplash';
+import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-function App(): React.JSX.Element {
-  useEffect(() => {
-    setTimeout(() => {
-      BootSplash.hide({ fade: true });
-    }, 1300);
-  }, []);
+initializeStorage(MMKVStorage);
 
+const queryClient = new QueryClient();
+
+function App(): React.JSX.Element {
   return (
-    <SafeAreaProvider>
-      <ThemeProvider theme={theme}>
-        <Router />
-      </ThemeProvider>
-    </SafeAreaProvider>
+    <AuthCredentialsProvider>
+      <QueryClientProvider client={queryClient}>
+        <SafeAreaProvider>
+          <ThemeProvider theme={theme}>
+            <Router />
+            <Toast />
+          </ThemeProvider>
+        </SafeAreaProvider>
+      </QueryClientProvider>
+    </AuthCredentialsProvider>
   );
 }
 
