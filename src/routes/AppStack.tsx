@@ -18,6 +18,7 @@ export function AppStack({ initialRouteName = 'HomeScreen' }: Props) {
       screenOptions={{
         headerShown: false,
         fullScreenGestureEnabled: true,
+        animation: 'fade',
       }}
       initialRouteName={initialRouteName}>
       <Stack.Screen name="HomeScreen" component={HomeScreen} />

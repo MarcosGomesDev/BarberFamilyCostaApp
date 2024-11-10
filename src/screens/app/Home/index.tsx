@@ -6,8 +6,8 @@ import { Recommendeds, Schedules, WelcomeUser } from './components';
 
 function Header() {
   return (
-    <Box height={50} justifyContent="center">
-      <Icon size={46} name="logo" color="white" />
+    <Box height={50} justifyContent="center" backgroundColor="gray1" mx="s14">
+      <Icon size={28} name="logo" color="white" />
     </Box>
   );
 }

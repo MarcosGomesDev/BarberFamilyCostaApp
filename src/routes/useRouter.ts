@@ -23,8 +23,8 @@ export function useRouter(): Stacks {
   // }
 
   if (!authCredentials) {
-    return 'App';
+    return 'Auth';
   }
 
-  return 'Auth';
+  return 'App';
 }

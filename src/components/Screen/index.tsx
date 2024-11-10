@@ -87,7 +87,6 @@ export function Screen({
             style={{
               backgroundColor: colors.background,
               paddingTop: top,
-              paddingBottom: bottom,
             }}
             alignContent="center">
             <ScreenHeader

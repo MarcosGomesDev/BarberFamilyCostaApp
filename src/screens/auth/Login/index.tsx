@@ -1,13 +1,16 @@
 import {
+  Box,
   Button,
   FormPasswordInput,
   FormTextInput,
+  Icon,
   Screen,
   Text,
 } from '@components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { TouchableOpacity } from 'react-native';
 import { loginSchema, LoginSchema } from './loginSchema';
 
 export function LoginScreen() {
@@ -27,7 +30,10 @@ export function LoginScreen() {
   }
 
   return (
-    <Screen scrollable>
+    <Screen scrollable justifyContent="center">
+      <Box width="100%" alignItems="center" mb="s24" pb="s20">
+        <Icon name="logo" size={96} />
+      </Box>
       <Text marginBottom="s8" preset="headingLarge">
         Olá
       </Text>
@@ -51,9 +57,11 @@ export function LoginScreen() {
         boxProps={{ mb: 's20' }}
       />
 
-      <Text color="primary" preset="paragraphSmall" bold>
-        Esqueci minha senha
-      </Text>
+      <TouchableOpacity onPress={() => {}}>
+        <Text color="primary" preset="paragraphSmall" bold>
+          Esqueci minha senha
+        </Text>
+      </TouchableOpacity>
 
       <Button
         disabled={!formState.isValid}
@@ -66,14 +74,15 @@ export function LoginScreen() {
         <Button preset="outline" marginTop="s14" title="Criar uma conta" />
       )}
 
-      <Text
-        onPress={() => setIsBarber(prev => !prev)}
-        marginTop="s40"
-        textAlign="center"
-        color="primary"
-        preset="paragraphSmall">
-        {isBarber ? 'Entrar como cliente' : 'Entrar como barbeiro'}
-      </Text>
+      <TouchableOpacity onPress={() => setIsBarber(prev => !prev)}>
+        <Text
+          marginTop="s28"
+          textAlign="center"
+          color="primary"
+          preset="paragraphSmall">
+          {isBarber ? 'Entrar como cliente' : 'Entrar como barbeiro'}
+        </Text>
+      </TouchableOpacity>
     </Screen>
   );
 }

@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>BFC</string>
+	<string>BarberFamilyCosta</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -26,15 +26,16 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+	  <!-- Do not change NSAllowsArbitraryLoads to true, or you will risk app rejection! -->
 		<key>NSAllowsArbitraryLoads</key>
 		<false/>
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
 	<key>UILaunchStoryboardName</key>
-	<string>BootSplash</string>
+	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>arm64</string>
@@ -47,18 +48,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Nunito-Black.otf</string>
-		<string>Nunito-BlackItalic.otf</string>
-		<string>Nunito-Bold.otf</string>
-		<string>Nunito-BoldItalic.otf</string>
-		<string>Nunito-Italic.otf</string>
-		<string>Nunito-Light.otf</string>
-		<string>Nunito-LightItalic.otf</string>
-		<string>Nunito-Regular.otf</string>
-		<string>Nunito-Medium.otf</string>
-		<string>Nunito-MediumItalic.otf</string>
-	</array>
 </dict>
 </plist>

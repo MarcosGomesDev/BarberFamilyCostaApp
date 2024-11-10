@@ -1,14 +1,6 @@
-import {
-  BarbershopDetailsCard,
-  Box,
-  Button,
-  Screen,
-  ServiceCard,
-} from '@components';
-import { useState } from 'react';
-import barbershopinfo from './barbershopinfo.json';
+import { Box, Button, Screen, ServiceCard } from '@components';
+import React, { useState } from 'react';
 import { Content, HeaderDetails } from './components';
-import servicesData from './services.json';
 
 const data = {
   barberShop: {
@@ -20,7 +12,7 @@ const data = {
     rating: 4.5,
     totalRatings: 100,
   },
-  services: servicesData,
+  services: [],
 };
 
 const MenuType = {
@@ -71,7 +63,8 @@ export function BarbershopDetailsScreen() {
           ))}
         </Box>
       ) : (
-        <BarbershopDetailsCard data={barbershopinfo} />
+        // <BarbershopDetailsCard data={barbershopinfo} />
+        <></>
       )}
     </Screen>
   );
