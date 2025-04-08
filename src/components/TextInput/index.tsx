@@ -1,12 +1,25 @@
-import React, { useRef } from 'react';
+import React, {
+  forwardRef,
+  ForwardRefRenderFunction,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
 import {
+  Animated,
+  Keyboard,
+  NativeSyntheticEvent,
   Pressable,
   TextInput as RNTextInput,
   TextInputProps as RNTextInputProps,
+  TextInputFocusEventData,
   TextStyle,
 } from 'react-native';
 
 import { useAppTheme } from '@hooks';
+import { ThemeColors } from '@theme';
 import { Box, BoxProps } from '../Box';
 import { $fontFamily, $fontSizes, Text } from '../Text';
 
@@ -16,78 +29,227 @@ export interface TextInputProps extends RNTextInputProps {
   RightComponent?: React.ReactElement;
   LeftComponent?: React.ReactElement;
   boxProps?: BoxProps;
+  borderColor?: ThemeColors;
 }
-export function TextInput({
-  label,
-  errorMessage,
-  RightComponent,
-  LeftComponent,
-  boxProps,
-  ...rnTextInputProps
-}: TextInputProps) {
+
+export interface RefProps {
+  focus: () => void;
+  blur: () => void;
+}
+
+export const TextInput: ForwardRefRenderFunction<RefProps, TextInputProps> = (
+  {
+    label,
+    errorMessage,
+    RightComponent,
+    LeftComponent,
+    boxProps,
+    borderColor,
+    onFocus,
+    onBlur,
+    ...rnTextInputProps
+  },
+  ref,
+) => {
   const { colors } = useAppTheme();
   const inputRef = useRef<RNTextInput>(null);
+  const [isFocused, setIsFocused] = useState(false);
+
+  const moveText = useRef(
+    new Animated.Value(rnTextInputProps.value ? 1 : 0),
+  ).current;
 
   const $textInputContainer: BoxProps = {
     flexDirection: 'row',
-    borderWidth: 1,
-    borderColor: errorMessage ? 'red' : 'gray3',
+    borderWidth: 1.4,
+    borderColor: borderColor
+      ? borderColor
+      : errorMessage
+      ? 'red'
+      : isFocused
+      ? 'white'
+      : 'gray2',
     padding: 's12',
     borderRadius: 's8',
-    backgroundColor: 'secondaryBlack',
+    backgroundColor: 'background',
   };
+
+  const moveTextTop = useCallback(() => {
+    Animated.timing(moveText, {
+      toValue: 1,
+      duration: 200,
+      useNativeDriver: true,
+    }).start();
+  }, [moveText]);
+
+  const moveTextBottom = useCallback(() => {
+    Animated.timing(moveText, {
+      toValue: 0,
+      duration: 200,
+      useNativeDriver: true,
+    }).start();
+  }, [moveText]);
 
   function focusInput() {
     inputRef.current?.focus();
+    setIsFocused(true);
+    moveTextTop();
   }
+
+  const handleOnFocus = useCallback(
+    (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+      setIsFocused(true);
+      moveTextTop();
+
+      if (onFocus) {
+        onFocus(e);
+      }
+    },
+    [onFocus, moveTextTop],
+  );
+
+  const handleOnBlur = useCallback(
+    (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+      if (!rnTextInputProps.value && !rnTextInputProps.placeholder) {
+        moveTextBottom();
+      }
+      setIsFocused(false);
+      if (onBlur) {
+        onBlur(e);
+      }
+    },
+    [
+      onBlur,
+      moveTextBottom,
+      rnTextInputProps.value,
+      rnTextInputProps.placeholder,
+    ],
+  );
+
+  const yVal = moveText.interpolate({
+    inputRange: [0, 1],
+    outputRange: [4, -20],
+  });
+
+  const animStyle = {
+    transform: [
+      {
+        translateY: yVal,
+      },
+    ],
+  };
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      focus() {
+        return inputRef.current?.focus();
+      },
+      blur() {
+        return inputRef.current?.blur();
+      },
+    }),
+    [],
+  );
+
+  useEffect(() => {
+    if (rnTextInputProps.value || rnTextInputProps.placeholder) {
+      moveTextTop();
+    }
+  }, [moveTextTop, rnTextInputProps.value, rnTextInputProps.placeholder]);
+
   return (
-    <Box flexGrow={1} flexShrink={1} borderRadius="s8" {...boxProps}>
-      <Pressable onPress={focusInput}>
-        {label && (
-          <Box
-            flexDirection="row"
-            justifyContent="space-between"
-            paddingHorizontal="s8">
-            <Text preset="paragraphMedium" marginBottom="s4">
-              {label}
-            </Text>
-            {errorMessage && (
-              <Text color="red" preset="paragraphSmall" bold>
-                {errorMessage}
-              </Text>
+    <>
+      {errorMessage && (
+        <Text
+          color="red"
+          preset="paragraphCaption"
+          bold
+          textAlign="right"
+          style={{
+            alignSelf: 'flex-end',
+          }}
+          mb="s4">
+          {errorMessage}
+        </Text>
+      )}
+      <Box
+        flexGrow={1}
+        flexShrink={1}
+        borderRadius="s8"
+        width={'100%'}
+        {...boxProps}>
+        <Pressable onPress={focusInput}>
+          {label && (
+            <Animated.View
+              style={[
+                {
+                  position: 'absolute',
+                  top: 9,
+                  left: LeftComponent ? 34 : 10,
+                  zIndex: 3,
+                  borderRadius: 90,
+                },
+                animStyle,
+              ]}>
+              <Box
+                flexDirection="row"
+                backgroundColor="background"
+                justifyContent="space-between"
+                paddingHorizontal="s8">
+                <Text
+                  preset="paragraphSmall"
+                  marginBottom="s4"
+                  color={
+                    borderColor
+                      ? borderColor
+                      : errorMessage
+                      ? 'red'
+                      : isFocused
+                      ? 'white'
+                      : 'gray3'
+                  }>
+                  {label}
+                </Text>
+              </Box>
+            </Animated.View>
+          )}
+          <Box {...$textInputContainer}>
+            {LeftComponent && (
+              <Box justifyContent="center">{LeftComponent}</Box>
+            )}
+            <RNTextInput
+              ref={inputRef}
+              onSubmitEditing={Keyboard.dismiss}
+              autoCapitalize="none"
+              cursorColor={colors.white}
+              placeholderTextColor={colors.gray3}
+              onFocus={handleOnFocus}
+              onBlur={handleOnBlur}
+              style={[$textInputStyle]}
+              {...rnTextInputProps}
+            />
+            {RightComponent && (
+              <Box justifyContent="center" ml="s16">
+                {RightComponent}
+              </Box>
             )}
           </Box>
-        )}
-        <Box {...$textInputContainer}>
-          {LeftComponent && (
-            <Box justifyContent="center" mr="s16">
-              {LeftComponent}
-            </Box>
-          )}
-          <RNTextInput
-            autoCapitalize="none"
-            ref={inputRef}
-            placeholderTextColor={colors.gray3}
-            style={[$textInputStyle]}
-            {...rnTextInputProps}
-          />
-          {RightComponent && (
-            <Box justifyContent="center" ml="s16">
-              {RightComponent}
-            </Box>
-          )}
-        </Box>
-      </Pressable>
-    </Box>
+        </Pressable>
+      </Box>
+    </>
   );
-}
+};
 
 export const $textInputStyle: TextStyle = {
   padding: 0,
   flexGrow: 1,
   flexShrink: 1,
+  paddingLeft: 10,
   color: 'white',
   backgroundColor: 'transparent',
   fontFamily: $fontFamily.regular,
   ...$fontSizes.paragraphMedium,
 };
+
+export default forwardRef(TextInput);

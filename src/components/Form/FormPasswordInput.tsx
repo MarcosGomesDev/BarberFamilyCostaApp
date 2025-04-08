@@ -1,28 +1,51 @@
-import React from 'react';
+import React, { forwardRef, ForwardRefRenderFunction } from 'react';
 
-import { Controller, FieldValues, UseControllerProps } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 
-import { PasswordInput, PasswordInputProps } from '@components';
+import { PasswordInput, RefProps } from '@components';
+import { PasswordInputProps } from '../PasswordInput';
 
-export function FormPasswordInput<FormType extends FieldValues>({
-  control,
-  name,
-  rules,
-  ...passwordInputProps
-}: PasswordInputProps & UseControllerProps<FormType>) {
+type FormPasswordInputProps = PasswordInputProps & {
+  name: string;
+};
+
+const FormPasswordInput: ForwardRefRenderFunction<
+  RefProps,
+  FormPasswordInputProps
+> = ({ name, ...passwordInputProps }, ref) => {
+  const { control } = useFormContext();
+
   return (
     <Controller
       control={control}
       name={name}
-      rules={rules}
-      render={({ field, fieldState }) => (
+      render={({
+        field: { onChange, onBlur, value, ref: fieldRef },
+        fieldState: { error },
+        formState: { defaultValues },
+      }) => (
         <PasswordInput
-          value={field.value}
-          onChangeText={field.onChange}
-          errorMessage={fieldState.error?.message}
+          ref={instance => {
+            fieldRef(instance);
+            if (ref) {
+              if (typeof ref === 'function') {
+                ref(instance);
+              } else {
+                ref.current = instance;
+              }
+            }
+          }}
+          value={value}
+          numberOfLines={1}
+          defaultValue={defaultValues?.[name] ? defaultValues[name] : value}
+          onBlur={onBlur}
+          onChangeText={onChange}
+          errorMessage={error?.message}
           {...passwordInputProps}
         />
       )}
     />
   );
-}
+};
+
+export default forwardRef(FormPasswordInput);

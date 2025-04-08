@@ -1,29 +1,52 @@
-import React from 'react';
+import React, { forwardRef, ForwardRefRenderFunction } from 'react';
 
-import {Controller, UseControllerProps, FieldValues} from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 
-import {TextInput, TextInputProps} from '@components';
+import { RefProps, TextInput, TextInputProps } from '@components';
 
-export function FormTextInput<FormType extends FieldValues>({
-  control,
-  name,
-  rules,
-  errorMessage,
-  ...textInputProps
-}: TextInputProps & UseControllerProps<FormType>) {
+type FormTextInputProps = TextInputProps & {
+  name: string;
+};
+
+const FormTextInput: ForwardRefRenderFunction<RefProps, FormTextInputProps> = (
+  { name, ...textInputProps },
+  ref,
+) => {
+  const { control } = useFormContext();
   return (
     <Controller
-      control={control}
       name={name}
-      rules={rules}
-      render={({field, fieldState}) => (
+      control={control}
+      render={({
+        field: { onChange, onBlur, value, ref: fieldRef },
+        fieldState: { error },
+        formState: { defaultValues },
+      }) => (
         <TextInput
-          value={field.value}
-          onChangeText={field.onChange}
-          errorMessage={fieldState.error?.message || errorMessage}
+          ref={instance => {
+            fieldRef(instance);
+            if (ref) {
+              if (typeof ref === 'function') {
+                ref(instance);
+              } else {
+                ref.current = instance;
+              }
+            }
+          }}
+          value={value}
+          onChangeText={onChange}
+          defaultValue={defaultValues?.[name] ? defaultValues[name] : value}
+          numberOfLines={1}
+          onBlur={onBlur}
+          errorMessage={error?.message}
+          boxProps={{
+            mb: 's24',
+          }}
           {...textInputProps}
         />
       )}
     />
   );
-}
+};
+
+export default forwardRef(FormTextInput);

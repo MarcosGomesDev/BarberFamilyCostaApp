@@ -13,3 +13,8 @@ export * from './ServiceCard';
 export * from './Text';
 export * from './TextInput';
 export * from './Toast';
+
+import { default as PasswordInput } from './PasswordInput';
+import { default as TextInput } from './TextInput';
+
+export { PasswordInput, TextInput };

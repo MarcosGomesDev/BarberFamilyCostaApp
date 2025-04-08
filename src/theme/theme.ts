@@ -66,6 +66,7 @@ export const theme = createTheme({
     s46: 46,
     s48: 48,
     s56: 56,
+    full: 9999,
   },
 
   textVariants: {

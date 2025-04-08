@@ -21,8 +21,9 @@ export function ScrollViewContainer({
     <ScrollView
       keyboardShouldPersistTaps="handled"
       showsVerticalScrollIndicator={false}
-      {...props}
-      style={{ backgroundColor, flex: 1 }}>
+      contentContainerStyle={{ flexGrow: 1 }}
+      style={{ backgroundColor, flex: 1 }}
+      {...props}>
       {children}
     </ScrollView>
   );

@@ -15,6 +15,7 @@ import { ChatIcon } from '../../assets/icons/ChatIcon';
 import { ChatOnIcon } from '../../assets/icons/ChatOnIcon';
 import { CheckIcon } from '../../assets/icons/CheckIcon';
 import { CheckRoundIcon } from '../../assets/icons/CheckRoundIcon';
+import { ChevronDownIcon } from '../../assets/icons/ChevronDownIcon';
 import { ChevronRightIcon } from '../../assets/icons/ChevronRightIcon';
 import { CommentIcon } from '../../assets/icons/CommentIcon';
 import { ErrorRoundIcon } from '../../assets/icons/ErrorRoundIcon';
@@ -113,6 +114,7 @@ const iconRegistry = {
   star: StarIcon,
   pinMap: PinMapIcon,
   smartphone: SmartphoneIcon,
+  checkDown: ChevronDownIcon,
 };
 
 type IconType = typeof iconRegistry;

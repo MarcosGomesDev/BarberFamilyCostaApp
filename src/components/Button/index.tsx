@@ -45,7 +45,7 @@ export function Button({
       style={{ opacity: disabled ? 0.6 : 1 }}
       alignItems="center"
       justifyContent="center"
-      borderRadius="s12"
+      borderRadius="s8"
       {...buttonPreset.container}
       {...touchableOpacityBoxProps}>
       {loading ? (
