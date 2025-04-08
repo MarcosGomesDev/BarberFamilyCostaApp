@@ -1,4 +1,4 @@
-package com.barberfamilycosta
+package br.com.gomestechsolutions.barberfamilycosta
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

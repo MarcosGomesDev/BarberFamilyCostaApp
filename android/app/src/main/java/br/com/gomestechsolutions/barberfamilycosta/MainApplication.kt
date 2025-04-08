@@ -1,4 +1,4 @@
-package com.barberfamilycosta
+package br.com.gomestechsolutions.barberfamilycosta
 
 import android.app.Application
 import com.facebook.react.PackageList
