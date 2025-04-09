@@ -15,6 +15,7 @@ const PasswordInput: ForwardRefRenderFunction<RefProps, PasswordInputProps> = (
   ref,
 ) => {
   const [isSecureTextEntry, setIsSecureTextEntry] = useState(true);
+  const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<RefProps>(null);
 
   useImperativeHandle(
@@ -37,12 +38,20 @@ const PasswordInput: ForwardRefRenderFunction<RefProps, PasswordInputProps> = (
   return (
     <TextInput
       ref={inputRef}
+      onFocus={() => {
+        setIsFocused(true);
+      }}
+      onBlur={() => {
+        setIsFocused(false);
+      }}
       secureTextEntry={isSecureTextEntry}
       {...props}
       RightComponent={
         <Icon
           onPress={toggleSecureTextEntry}
-          color={props.errorMessage ? 'red' : 'gray3'}
+          color={
+            props.errorMessage ? 'red' : isFocused ? 'primaryContrast' : 'gray6'
+          }
           name={isSecureTextEntry ? 'eyeOn' : 'eyeOff'}
         />
       }

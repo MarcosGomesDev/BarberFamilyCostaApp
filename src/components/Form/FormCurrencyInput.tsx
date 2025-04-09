@@ -51,7 +51,7 @@ const FormCurrencyInput: ForwardRefRenderFunction<
             defaultValue={
               defaultValues?.[name] ? defaultValues[name] : formattedValue
             }
-            borderColor={validatedValue ? 'greenSuccess' : 'gray2'}
+            borderColor={validatedValue ? 'green' : 'gray2'}
             numberOfLines={1}
             onBlur={onBlur}
             errorMessage={error?.message}

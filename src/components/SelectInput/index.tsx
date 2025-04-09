@@ -179,9 +179,7 @@ export function SelectInput({
             borderWidth={1.4}
             paddingVertical="s4"
             paddingHorizontal="s12"
-            borderColor={
-              errorMessage ? 'red' : state ? 'greenSuccess' : 'gray2'
-            }
+            borderColor={errorMessage ? 'red' : state ? 'green' : 'gray2'}
             flexGrow={1}
             flexShrink={1}
             flexDirection="row"
@@ -212,7 +210,7 @@ export function SelectInput({
                       errorMessage
                         ? 'red'
                         : state && editable
-                        ? 'greenSuccess'
+                        ? 'green'
                         : 'gray2'
                     }>
                     {label}
@@ -235,7 +233,7 @@ export function SelectInput({
                       errorMessage
                         ? 'red'
                         : state && editable
-                        ? 'greenSuccess'
+                        ? 'green'
                         : 'gray2'
                     }
                   />
@@ -249,7 +247,7 @@ export function SelectInput({
                     color: errorMessage
                       ? colors.red
                       : state
-                      ? colors.greenSuccess
+                      ? colors.green
                       : colors.gray2,
                   }}
                   placeholderTextColor={
@@ -262,7 +260,7 @@ export function SelectInput({
               <Icon
                 name="checkDown"
                 size={20}
-                color={errorMessage ? 'red' : state ? 'greenSuccess' : 'gray2'}
+                color={errorMessage ? 'red' : state ? 'green' : 'gray2'}
               />
             </Box>
           </Box>

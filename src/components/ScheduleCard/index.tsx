@@ -24,7 +24,7 @@ export function ScheduleCard({ data }: ScheduleCardProps) {
       flexDirection="row"
       height={Dimensions.get('window').height / 7}
       justifyContent="space-between"
-      backgroundColor="secondaryBlack"
+      backgroundColor="black60"
       paddingHorizontal="s12"
       paddingVertical="s8">
       <Box

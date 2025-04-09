@@ -1,26 +1,9 @@
 import { createTheme } from '@shopify/restyle';
 import { ViewStyle } from 'react-native';
-
-export const palette = {
-  darkPurple: '#221C3D',
-  primaryPurple: '#8162FF',
-  backgroundBlack: '#141518',
-  secondaryBlack: '#1A1B1F',
-  greenSuccess: '#4ABC86',
-  gray1: '#26272B',
-  gray2: '#4E525B',
-  gray3: '#838896',
-  white: '#FFFFFF',
-  red: '#EF4444',
-  darkRed: '#2F1F1F',
-};
+import { colors } from './colors';
 
 export const theme = createTheme({
-  colors: {
-    ...palette,
-    background: palette.backgroundBlack,
-    primary: palette.primaryPurple,
-  },
+  colors: colors.lightTheme,
   spacing: {
     none: 0,
     s4: 4,
@@ -73,6 +56,11 @@ export const theme = createTheme({
     defaults: {},
   },
 });
+
+export const darkTheme = {
+  ...theme,
+  colors: colors.darkTheme,
+};
 
 export const $shadowProps: ViewStyle = {
   elevation: 10,

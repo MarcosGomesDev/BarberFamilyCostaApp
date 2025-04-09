@@ -45,11 +45,11 @@ export function ToasContent({ toast, onPress }: Props) {
 
 const mapTypeToIcon: Record<ToastType, IconProps> = {
   success: {
-    color: 'greenSuccess',
+    color: 'success',
     name: 'check',
   },
   error: {
-    color: 'red',
+    color: 'error',
     name: 'warning',
   },
 };

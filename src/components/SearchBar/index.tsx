@@ -3,9 +3,8 @@ import { Box } from '../Box';
 import { Button, ButtonProps } from '../Button';
 import { TextInput, TextInputProps } from '../TextInput';
 
-interface SearchBarProps
-  extends TextInputProps,
-    Omit<ButtonProps, 'onBlur' | 'onFocus' | 'style' | 'title'> {}
+type SearchBarProps = TextInputProps &
+  Omit<ButtonProps, 'onBlur' | 'onFocus' | 'style' | 'title'>;
 
 export function SearchBar({
   placeholder,

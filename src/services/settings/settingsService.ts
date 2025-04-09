@@ -35,7 +35,7 @@ function handleStatusBar(appColor: AppColorScheme) {
 
   if (Platform.OS === 'android') {
     StatusBar.setBackgroundColor(
-      appColor === 'dark' ? palette.backgroundBlack : palette.darkPurple,
+      appColor === 'dark' ? palette.black80 : palette.darkPurple,
     );
   }
 }

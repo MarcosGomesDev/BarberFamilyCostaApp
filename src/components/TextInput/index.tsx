@@ -51,7 +51,7 @@ export const TextInput: ForwardRefRenderFunction<RefProps, TextInputProps> = (
   },
   ref,
 ) => {
-  const { colors } = useAppTheme();
+  const { colors: themeColors } = useAppTheme();
   const inputRef = useRef<RNTextInput>(null);
   const [isFocused, setIsFocused] = useState(false);
 
@@ -61,14 +61,14 @@ export const TextInput: ForwardRefRenderFunction<RefProps, TextInputProps> = (
 
   const $textInputContainer: BoxProps = {
     flexDirection: 'row',
-    borderWidth: 1.4,
+    borderWidth: 1,
     borderColor: borderColor
       ? borderColor
       : errorMessage
       ? 'red'
       : isFocused
-      ? 'white'
-      : 'gray2',
+      ? 'primaryContrast'
+      : 'gray5',
     padding: 's12',
     borderRadius: 's8',
     backgroundColor: 'background',
@@ -169,7 +169,7 @@ export const TextInput: ForwardRefRenderFunction<RefProps, TextInputProps> = (
           style={{
             alignSelf: 'flex-end',
           }}
-          mb="s4">
+          mb="none">
           {errorMessage}
         </Text>
       )}
@@ -206,8 +206,8 @@ export const TextInput: ForwardRefRenderFunction<RefProps, TextInputProps> = (
                       : errorMessage
                       ? 'red'
                       : isFocused
-                      ? 'white'
-                      : 'gray3'
+                      ? 'primaryContrast'
+                      : 'gray5'
                   }>
                   {label}
                 </Text>
@@ -222,11 +222,16 @@ export const TextInput: ForwardRefRenderFunction<RefProps, TextInputProps> = (
               ref={inputRef}
               onSubmitEditing={Keyboard.dismiss}
               autoCapitalize="none"
-              cursorColor={colors.white}
-              placeholderTextColor={colors.gray3}
+              cursorColor={themeColors.primaryContrast}
+              placeholderTextColor={themeColors.gray3}
               onFocus={handleOnFocus}
               onBlur={handleOnBlur}
-              style={[$textInputStyle]}
+              style={[
+                $textInputStyle,
+                {
+                  color: themeColors.primaryContrast,
+                },
+              ]}
               {...rnTextInputProps}
             />
             {RightComponent && (
@@ -246,7 +251,6 @@ export const $textInputStyle: TextStyle = {
   flexGrow: 1,
   flexShrink: 1,
   paddingLeft: 10,
-  color: 'white',
   backgroundColor: 'transparent',
   fontFamily: $fontFamily.regular,
   ...$fontSizes.paragraphMedium,

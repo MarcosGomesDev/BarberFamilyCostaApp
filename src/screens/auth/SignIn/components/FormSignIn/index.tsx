@@ -26,7 +26,7 @@ export function FormSignIn() {
   });
 
   function submitForm({ email, password }: LoginSchema) {
-    // signIn({ email, password });
+    console.log({ email, password });
   }
 
   return (
@@ -47,7 +47,7 @@ export function FormSignIn() {
           paddingHorizontal: Dimensions.get('screen').width * 0.06,
         }}>
         <FormProvider {...form}>
-          <FormTextInput name="email" label="E-mail" boxProps={{ mb: 's20' }} />
+          <FormTextInput name="email" label="E-mail" boxProps={{ mb: 's4' }} />
 
           <FormPasswordInput
             name="password"
@@ -72,7 +72,6 @@ export function FormSignIn() {
           {!isBarber && (
             <Button
               preset="outline"
-              marginTop="s4"
               title="Criar uma conta"
               disabled={form.formState.isSubmitting}
             />

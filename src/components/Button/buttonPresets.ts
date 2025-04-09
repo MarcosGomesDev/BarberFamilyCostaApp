@@ -18,13 +18,13 @@ export const buttonPresets: Record<
   primary: {
     default: {
       container: {
-        backgroundColor: 'primaryPurple',
+        backgroundColor: 'primary',
       },
-      content: 'white',
+      content: 'primaryContrast',
     },
     disabled: {
       container: {
-        backgroundColor: 'primaryPurple',
+        backgroundColor: 'primary',
         activeOpacity: 0.4,
       },
       content: 'white',
@@ -33,10 +33,10 @@ export const buttonPresets: Record<
   outline: {
     default: {
       container: {
-        borderWidth: 1,
+        borderWidth: 0.5,
         borderColor: 'gray1',
       },
-      content: 'white',
+      content: 'primaryContrast',
     },
     disabled: {
       container: {

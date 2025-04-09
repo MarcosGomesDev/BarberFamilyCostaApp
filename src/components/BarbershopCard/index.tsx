@@ -17,7 +17,7 @@ const widthCard = Dimensions.get('window').width / 2.1;
 export function BarberShopCard({ data, style, onPress }: BarberShopCardProps) {
   return (
     <Box
-      backgroundColor="secondaryBlack"
+      backgroundColor="black60"
       borderWidth={1}
       width={widthCard}
       height={300}
@@ -43,7 +43,7 @@ export function BarberShopCard({ data, style, onPress }: BarberShopCardProps) {
           opacity={0.8}
           ml="s4"
           mt="s4">
-          <Icon name="star" color="primaryPurple" size={14} />
+          <Icon name="star" color="primary" size={14} />
           <Text bold preset="paragraphSmall" ml="s4">
             5.0
           </Text>

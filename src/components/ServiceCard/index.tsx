@@ -17,7 +17,7 @@ export function ServiceCard({ data }: ServiceCardProps) {
       borderColor="gray1"
       borderWidth={1}
       alignItems="center"
-      backgroundColor="secondaryBlack"
+      backgroundColor="black60"
       paddingHorizontal="s10"
       gap="s12"
       mb="s14"

@@ -1,30 +1,20 @@
 import { Status } from '@interfaces';
-import { ResponsiveValue } from '@shopify/restyle';
+import { ThemeColors } from '@theme';
 
-export function getStatusColor(status: keyof typeof Status):
-  | ResponsiveValue<
-      'gray3' | 'primaryPurple' | 'red',
-      // @ts-ignore
-      unknown
-    >
-  | undefined {
+export function getStatusColor(status: keyof typeof Status): ThemeColors {
   switch (status) {
     case 'FINISHED':
       return 'gray3';
     case 'CONFIRMED':
-      return 'primaryPurple';
+      return 'purple';
     case 'CANCELLED':
       return 'red';
   }
 }
 
-export function getStatusBackgroundColor(status: keyof typeof Status):
-  | ResponsiveValue<
-      'gray1' | 'darkPurple' | 'red',
-      // @ts-ignore
-      unknown
-    >
-  | undefined {
+export function getStatusBackgroundColor(
+  status: keyof typeof Status,
+): ThemeColors | undefined {
   switch (status) {
     case 'FINISHED':
       return 'gray1';

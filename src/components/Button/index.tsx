@@ -6,6 +6,7 @@ import {
   Icon,
   IconName,
   Text,
+  TextProps,
   TextVariants,
   TouchableOpacityBox,
   TouchableOpacityBoxProps,
@@ -23,6 +24,7 @@ export interface ButtonProps extends TouchableOpacityBoxProps {
   textPreset?: TextVariants;
   icon?: boolean;
   iconName?: IconName;
+  textProps?: Omit<TextProps, 'preset'>;
 }
 
 export function Button({
@@ -33,6 +35,7 @@ export function Button({
   icon = false,
   iconName = 'arrowLeft',
   textPreset = 'paragraphLarge',
+  textProps,
   ...touchableOpacityBoxProps
 }: ButtonProps) {
   const buttonPreset = buttonPresets[preset][disabled ? 'disabled' : 'default'];
@@ -41,7 +44,7 @@ export function Button({
       testID="button"
       disabled={disabled || loading}
       paddingHorizontal="s20"
-      height={50}
+      height={42}
       style={{ opacity: disabled ? 0.6 : 1 }}
       alignItems="center"
       justifyContent="center"
@@ -52,7 +55,11 @@ export function Button({
         <ActivityIndicator color={buttonPreset.content} />
       ) : (
         <Box flexDirection="row" alignItems="center">
-          <Text preset={textPreset} bold color={buttonPreset.content}>
+          <Text
+            preset={textPreset}
+            bold
+            color={buttonPreset.content}
+            {...textProps}>
             {title}
           </Text>
 
