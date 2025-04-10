@@ -7,12 +7,16 @@ import {
 } from '@components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAppTheme } from '@hooks';
+import { useNavigation } from '@react-navigation/native';
+import { AuthScreenProps } from '@routes';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Dimensions, TouchableOpacity } from 'react-native';
 import { loginSchema, LoginSchema } from '../../loginSchema';
 
 export function FormSignIn() {
+  const navigation =
+    useNavigation<AuthScreenProps<'SignInScreen'>['navigation']>();
   const { spacing, borderRadii, colors } = useAppTheme();
   const [isBarber, setIsBarber] = useState<boolean>(false);
 
@@ -22,11 +26,15 @@ export function FormSignIn() {
       email: '',
       password: '',
     },
-    mode: 'onChange',
+    mode: 'onSubmit',
   });
 
   function submitForm({ email, password }: LoginSchema) {
     console.log({ email, password });
+  }
+
+  function handleNavigateToSignUp() {
+    navigation.navigate('SignUpScreen');
   }
 
   return (
@@ -74,6 +82,7 @@ export function FormSignIn() {
               preset="outline"
               title="Criar uma conta"
               disabled={form.formState.isSubmitting}
+              onPress={handleNavigateToSignUp}
             />
           )}
 
