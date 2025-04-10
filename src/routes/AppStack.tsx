@@ -1,9 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { BarbershopDetailsScreen, HomeScreen } from '@screens';
+import { BarbershopDetailsScreen, DarkModeScreen, HomeScreen } from '@screens';
 
 export type AppStackParamList = {
   HomeScreen: undefined;
   BarbershopDetailsScreen: undefined;
+  DarkModeScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
@@ -26,6 +27,7 @@ export function AppStack({ initialRouteName = 'HomeScreen' }: Props) {
         name="BarbershopDetailsScreen"
         component={BarbershopDetailsScreen}
       />
+      <Stack.Screen name="DarkModeScreen" component={DarkModeScreen} />
     </Stack.Navigator>
   );
 }
