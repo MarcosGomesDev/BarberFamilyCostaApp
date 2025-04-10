@@ -115,7 +115,7 @@ const OTPInput: ForwardRefRenderFunction<OTPRefProps, OTPInputProps> = (
       return colors.green;
     }
 
-    return otp[index] ? colors.white : colors.green;
+    return otp[index] ? colors.green : colors.white;
   }
 
   return (
