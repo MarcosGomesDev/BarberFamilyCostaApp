@@ -6,10 +6,11 @@ import { RefProps, TextInput, TextInputProps } from '@components';
 
 type FormTextInputProps = TextInputProps & {
   name: string;
+  customMask?: (value: string) => string;
 };
 
 const FormTextInput: ForwardRefRenderFunction<RefProps, FormTextInputProps> = (
-  { name, ...textInputProps },
+  { name, customMask, ...textInputProps },
   ref,
 ) => {
   const { control } = useFormContext();
@@ -34,7 +35,10 @@ const FormTextInput: ForwardRefRenderFunction<RefProps, FormTextInputProps> = (
             }
           }}
           value={value}
-          onChangeText={onChange}
+          onChangeText={text => {
+            const finalValue = customMask ? customMask(text) : text;
+            onChange(finalValue);
+          }}
           defaultValue={defaultValues?.[name] ? defaultValues[name] : value}
           numberOfLines={1}
           onBlur={onBlur}
