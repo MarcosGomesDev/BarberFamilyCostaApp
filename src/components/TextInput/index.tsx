@@ -11,6 +11,7 @@ import {
   Animated,
   Keyboard,
   NativeSyntheticEvent,
+  NativeTouchEvent,
   Pressable,
   TextInput as RNTextInput,
   TextInputProps as RNTextInputProps,
@@ -69,7 +70,8 @@ export const TextInput: ForwardRefRenderFunction<RefProps, TextInputProps> = (
       : isFocused
       ? 'primaryContrast'
       : 'gray5',
-    padding: 's12',
+    height: 50,
+    paddingHorizontal: 's12',
     borderRadius: 's8',
     backgroundColor: 'background',
   };
@@ -179,7 +181,13 @@ export const TextInput: ForwardRefRenderFunction<RefProps, TextInputProps> = (
         borderRadius="s8"
         width={'100%'}
         {...boxProps}>
-        <Pressable onPress={focusInput}>
+        <Pressable
+          onPress={() => {
+            focusInput();
+            rnTextInputProps?.onPress?.(
+              {} as NativeSyntheticEvent<NativeTouchEvent>,
+            );
+          }}>
           {label && (
             <Animated.View
               style={[
@@ -251,6 +259,7 @@ export const $textInputStyle: TextStyle = {
   flexGrow: 1,
   flexShrink: 1,
   paddingLeft: 10,
+  height: '100%',
   backgroundColor: 'transparent',
   fontFamily: $fontFamily.regular,
   ...$fontSizes.paragraphMedium,
