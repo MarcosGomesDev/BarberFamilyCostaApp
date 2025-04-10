@@ -5,7 +5,7 @@ import { DrawerActions, useNavigation } from '@react-navigation/native';
 import { Box, BoxProps, Icon, Text, TouchableOpacityBox } from '@components';
 import { ScreenProps } from '../..';
 
-const ICON_SIZE = 20;
+const ICON_SIZE = 28;
 type Props = Pick<
   ScreenProps,
   'title' | 'canGoBack' | 'HeaderComponent' | 'isHome'
