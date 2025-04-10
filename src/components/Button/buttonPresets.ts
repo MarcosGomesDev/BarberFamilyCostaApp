@@ -33,15 +33,15 @@ export const buttonPresets: Record<
   outline: {
     default: {
       container: {
-        borderWidth: 0.5,
-        borderColor: 'gray1',
+        borderWidth: 1,
+        borderColor: 'outlineButton',
       },
       content: 'primaryContrast',
     },
     disabled: {
       container: {
         borderWidth: 1,
-        borderColor: 'gray1',
+        borderColor: 'outlineButton',
       },
       content: 'white',
     },

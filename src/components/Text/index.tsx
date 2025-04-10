@@ -26,7 +26,7 @@ export function Text({
   const fontFamily = getFontFamily(preset, bold, italic, semiBold);
   return (
     <SRText
-      color="white"
+      color="primaryContrast"
       style={[$fontSizes[preset], { fontFamily }, style]}
       {...sRTextProps}>
       {children}

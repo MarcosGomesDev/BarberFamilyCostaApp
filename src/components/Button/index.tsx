@@ -44,7 +44,7 @@ export function Button({
       testID="button"
       disabled={disabled || loading}
       paddingHorizontal="s20"
-      height={42}
+      height={50}
       style={{ opacity: disabled ? 0.6 : 1 }}
       alignItems="center"
       justifyContent="center"

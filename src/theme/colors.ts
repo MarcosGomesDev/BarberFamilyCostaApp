@@ -28,6 +28,8 @@ const lightTheme = {
   buttonPrimary: palette.purple,
   primaryContrast: palette.black80,
   focusInput: palette.gray1,
+
+  outlineButton: palette.gray1,
 };
 
 const darkTheme: typeof lightTheme = {
@@ -39,6 +41,7 @@ const darkTheme: typeof lightTheme = {
   buttonPrimary: palette.purple,
   primaryContrast: palette.white,
   focusInput: palette.gray8,
+  outlineButton: palette.gray4,
 };
 
 export const colors = { palette, lightTheme, darkTheme };
